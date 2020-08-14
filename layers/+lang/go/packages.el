@@ -159,6 +159,7 @@
         "ir" 'go-remove-unused-imports
         "tP" 'spacemacs/go-run-package-tests-nested
         "tp" 'spacemacs/go-run-package-tests
+        "tl" 'spacemacs/go-run-last-test
         "ts" 'spacemacs/go-run-test-current-suite
         "tt" 'spacemacs/go-run-test-current-function
         "xx" 'spacemacs/go-run-main))))

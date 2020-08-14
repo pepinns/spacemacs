@@ -110,8 +110,14 @@
 
 (defun spacemacs/go-run-tests (args)
   (interactive)
-  (compilation-start (concat go-test-command " " (when go-test-verbose "-v ") args " " go-use-test-args)
-                     nil (lambda (n) go-test-buffer-name) nil))
+  (setq go-last-test-run (concat "cd " default-directory " && go test " (when go-test-verbose "-v ") args " " go-use-test-args))
+  (compilation-start go-last-test-run
+      nil (lambda (n) go-test-buffer-name) nil))
+
+(defun spacemacs/go-run-last-test ()
+  (interactive)
+  (compilation-start go-last-test-run
+      nil (lambda (n) go-test-buffer-name) nil))
 
 (defun spacemacs/go-run-package-tests ()
   (interactive)
