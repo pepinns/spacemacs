@@ -54,7 +54,7 @@
           ac-fuzzy-enable t
           ac-comphist-file (concat spacemacs-cache-directory "ac-comphist.dat")
           ;; use 'complete when auto-complete is disabled
-          tab-always-indent 'complete
+          tab-always-indent 't
           ac-dwim t)
     :config
     (progn
@@ -286,7 +286,7 @@
     (progn
       ;; We don't want undefined variable errors
       (defvar yas-global-mode nil)
-      (setq yas-triggers-in-field t
+      (setq yas-triggers-in-field nil
             yas-wrap-around-region t
             helm-yas-display-key-on-candidate t)
       ;; on multiple keys, fall back to completing read
@@ -297,6 +297,16 @@
       (setq yas-minor-mode-map (make-sparse-keymap))
       ;; this makes it easy to get out of a nested expansion
       (define-key yas-minor-mode-map (kbd "M-s-/") 'yas-next-field)
+      ;; The following is optional.
+      ;; (define-key yas-minor-mode-map [backtab]     'yas-expand)
+      ;; Strangely, just redefining one of the variations below won't work.
+      ;; All rebinds seem to be needed.
+      (define-key yas-minor-mode-map [(tab)]        'yas-next-field)
+      (define-key yas-minor-mode-map [<tab>]        'yas-next-field)
+      (define-key yas-minor-mode-map (kbd "TAB")    'yas-next-field)
+      (define-key yas-minor-mode-map (kbd "<tab>") 'yas-next-field)
+      (define-key yas-minor-mode-map (kbd "<C-p>")  'yas-maybe-expand)
+      (define-key yas-minor-mode-map (kbd "C-p")  'yas-maybe-expand)
       ;; configure snippet directories
       (let* ((spacemacs--auto-completion-dir
               (configuration-layer/get-layer-local-dir 'auto-completion))
