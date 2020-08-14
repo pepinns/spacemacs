@@ -293,6 +293,7 @@ MODE parameter must match the :modes values used in the call to
     (let ((map company-active-map))
       (define-key map (kbd "C-j") 'company-select-next)
       (define-key map (kbd "C-k") 'company-select-previous)
+      (define-key map (kbd "C-g") 'company-abort)
       (define-key map (kbd "C-l") 'company-complete-selection))
     ;; Fix company-quickhelp Evil C-k
     (let ((prev nil))
@@ -307,6 +308,7 @@ MODE parameter must match the :modes values used in the call to
    (t
     (let ((map company-active-map))
       (define-key map (kbd "C-n") 'company-select-next)
+      (define-key map (kbd "C-g") 'company-abort)
       (define-key map (kbd "C-p") 'company-select-previous)))))
 
 
